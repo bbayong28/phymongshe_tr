@@ -1,12 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const List = ({ shopList }) => {
+    const { cate } = useParams();
+    //url 파라미터에 뿌려진 값을 받아와서 새 배열을 만드는데 ... 원래배열에서 카테고리가 일치하는 것으로.
+    const cateList = shopList.filter(it => cate === it.cate)
     return (
         <section className='shopList'>
             <div className='inner'>
                 {
-                    shopList.map(it => {
+                    cateList.map((it, idx) => {
                         return (
                             <figure key={it.id}>
                                 <Link to={'/shopItem/' + it.id}>

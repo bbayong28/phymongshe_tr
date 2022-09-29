@@ -2,7 +2,8 @@
 
 .MainSlide {
     position: relative;
-    padding: 10rem 0 0;
+    transform: translateY(-8rem);     
+    height: calc(100vh - 18rem);
 
     .slick-track {
         transition-duration: 0.5ms;
@@ -11,8 +12,8 @@
 
     .itm {
         position: relative;
+        color: common.$wColor;           
         height: calc(100vh - 10rem);
-        color: common.$wColor;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
