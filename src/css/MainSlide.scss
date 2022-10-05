@@ -2,7 +2,7 @@
 
 .MainSlide {
     position: relative;
-    transform: translateY(-8rem);     
+    transform: translateY(-8rem);
     height: calc(100vh - 18rem);
 
     .slick-track {
@@ -12,8 +12,8 @@
 
     .itm {
         position: relative;
-        color: common.$wColor;           
         height: calc(100vh - 10rem);
+        color: common.$wColor;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -59,7 +59,6 @@
             a {
                 text-transform: uppercase;
                 text-decoration: underline;
-                text-underline-position: under;
             }
         }
     }

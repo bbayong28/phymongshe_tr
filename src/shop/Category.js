@@ -1,15 +1,56 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 const List = ({ shopList }) => {
+
     const { cate } = useParams();
-    //url 파라미터에 뿌려진 값을 받아와서 새 배열을 만드는데 ... 원래배열에서 카테고리가 일치하는 것으로.
-    const cateList = shopList.filter(it => cate === it.cate)
+    const cateList = shopList.filter(it => cate === it.cate);
+    const [sortList, onSortList] = useState(cateList);
+    useEffect(() => {
+        onSortList(cateList);
+    }, [cate])
+
+    const rowPrice = [...sortList].sort(
+        (a, b) => (a.price - b.price)
+    );
+    const hiPrice = [...sortList].sort(
+        (a, b) => (b.price - a.price)
+    );
+    const newProduct = [...sortList].sort(
+        (a, b) => (b.time - a.time)
+    );
+    const inkki = [...sortList].sort(
+        (a, b) => (b.name.length - a.name.length)
+    );
+
+    const newSort = (it) => {
+        onSortList(it)
+    }
+
+
     return (
-        <section className='shopList'>
+        <section className='shopList pn'>
+            <div className="category">
+                홈 : {cate}
+            </div>
+            <h2>{cate}</h2>
+            <ul className="list">
+                <li>total product : {cateList.length}</li>
+                <li className='line'>line</li>
+                <li>
+                    <ul className='option'>
+                        <li onClick={() => newSort(rowPrice)}>낮은가격</li>
+                        <li onClick={() => newSort(hiPrice)}>높은가격</li>
+                        <li onClick={() => newSort(newProduct)} >신상품</li>
+                        <li onClick={() => newSort(inkki)}>인기상품</li>
+                    </ul>
+                </li>
+
+                {/* <li><Link to='/'><i className="xi-home-o"></i></Link></li> */}
+            </ul>
             <div className='inner'>
                 {
-                    cateList.map((it, idx) => {
+                    sortList.map((it, idx) => {
                         return (
                             <figure key={it.id}>
                                 <Link to={'/shopItem/' + it.id}>
